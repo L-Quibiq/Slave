@@ -13,6 +13,7 @@ on:
 
 jobs:
   prepare-and-deploy:
+    name: Read Appsettings
     runs-on: ubuntu-latest
     outputs:
       appsettings-json: ${{ steps.read_appsettings.outputs.appsettings_json }}
@@ -27,6 +28,7 @@ jobs:
           echo "appsettings_json=${appsettings}" >> $GITHUB_OUTPUT
 
   call-workflow-passing-data:
+    name: Deploy Logic App
     needs: prepare-and-deploy
     uses: L-Quibiq/Central/.github/workflows/trigger-logic-app-deployment.yml@main
     with:
