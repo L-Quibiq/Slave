@@ -1,0 +1,26 @@
+name: Deploy Logic App
+
+on:
+  workflow_dispatch:  # Allows manual triggering
+
+jobs:
+  prepare-and-deploy:
+    runs-on: ubuntu-latest
+    outputs:
+      appsettings-json: ${{ steps.read_appsettings.outputs.appsettings_json }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Read and encode appsettings.json
+        id: read_appsettings
+        run: |
+          appsettings=$(cat iac/parameters/appsettings.dev.json | base64 -w 0)
+          echo "appsettings_json=${appsettings}" >> $GITHUB_OUTPUT
+
+  call-workflow-passing-data:
+    needs: prepare-and-deploy
+    uses: L-Quibiq/Central/.github/workflows/trigger-logic-app-deployment.yml@main
+    with:
+      appsettings-json: ${{ needs.prepare-and-deploy.outputs.appsettings-json }}
+    secrets: inherit
