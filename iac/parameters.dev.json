@@ -1,1 +1,16 @@
-{}
+{
+  "ResourceGroup": "edeka-tests",
+  "LogicAppName": "la-edeka-test-logicapp",
+  "Location": "westeurope",
+  "StorageAccountName": "ljkadfjlhsldjfhljsdg",
+  "ConnectionStrings": {
+    "DefaultConnection": "YourConnectionString"
+  },
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft": "Warning",
+      "Microsoft.Hosting.Lifetime": "Information"
+    }
+  }
+}
