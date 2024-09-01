@@ -30,7 +30,7 @@ jobs:
   call-workflow-passing-data:
     name: Deploy Logic App
     needs: prepare-and-deploy
-    uses: L-Quibiq/Central/.github/workflows/trigger-logic-app-deployment.yml@main
+    uses: L-Quibiq/master/.github/workflows/logic-app-deployment.yml@main
     with:
       appsettings-json: ${{ needs.prepare-and-deploy.outputs.appsettings-json }}
     secrets: inherit
