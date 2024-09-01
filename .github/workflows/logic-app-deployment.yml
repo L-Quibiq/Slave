@@ -2,6 +2,14 @@ name: Deploy Logic App
 
 on:
   workflow_dispatch:  # Allows manual triggering
+    inputs:
+        name:
+          type: choice
+          description: Stage to deploy to
+          options: 
+          - Dev
+          - Test
+          - Prod
 
 jobs:
   prepare-and-deploy:
