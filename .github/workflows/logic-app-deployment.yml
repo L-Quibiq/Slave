@@ -3,7 +3,7 @@ name: Deploy Logic App
 on:
   workflow_dispatch:  # Allows manual triggering
     inputs:
-        name:
+        branch:
           type: choice
           description: Stage to deploy to
           options: 
@@ -21,7 +21,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
         with:
-          ref: ${{ github.event.inputs.name }}
+          ref: ${{ github.event.inputs.branch }}
 
       - name: Read and encode appsettings.json
         id: read_appsettings
@@ -35,4 +35,5 @@ jobs:
     uses: L-Quibiq/master/.github/workflows/logic-app-deployment.yml@main
     with:
       appsettings-json: ${{ needs.prepare-and-deploy.outputs.appsettings-json }}
+      branch: ${{ github.event.inputs.branch }}
     secrets: inherit
