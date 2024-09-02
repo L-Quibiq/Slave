@@ -7,9 +7,9 @@ on:
           type: choice
           description: Stage to deploy to
           options: 
-          - Dev
-          - Test
-          - Prod
+          - dev
+          - test
+          - main
 
 jobs:
   prepare-and-deploy:
@@ -21,7 +21,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
         with:
-          ref: main
+          ref: ${{ github.event.inputs.name }}
 
       - name: Read and encode appsettings.json
         id: read_appsettings
