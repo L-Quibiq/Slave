@@ -1,0 +1,25 @@
+name: Update Workflows from Central Repo
+
+on:
+  workflow_dispatch:  # Allows the workflow to be triggered remotely
+
+jobs:
+  update-workflows:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Slave Repository Workflows Branch
+        uses: actions/checkout@v3
+        with:
+          ref: workflows  # Check out the 'workflows' branch
+          fetch-depth: 0  # Full history for force push
+
+      - name: Pull Latest Workflows from Central Repo
+        run: |
+          git remote add central https://github.com/L-Quibiq/Master.git
+          git fetch central main
+          rm -rf .github/workflows/*
+          cp -R Master/starter-workflows/* .github/workflows/
+          git add .github/workflows/
+          git commit -m "Update workflows from central repo"
+          git push --force
