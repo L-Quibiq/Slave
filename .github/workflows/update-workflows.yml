@@ -14,12 +14,15 @@ jobs:
           ref: main  # Check out the main branch
           fetch-depth: 0  # Full history for force push
 
+      - name: List contents of directory 1
+        run: ls -R
+
       - name: Fetch from Central Repo
         run: |
           git remote add central https://github.com/L-Quibiq/Master.git
           git fetch central main
 
-      - name: List contents of Master directory
+      - name: List contents of directory 2
         run: ls -R
 
       - name: Copy Workflows
