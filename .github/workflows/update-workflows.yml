@@ -1,7 +1,7 @@
 name: Update Workflows from Central Repo
 
 on:
-  workflow_dispatch:  # Allows the workflow to be triggered remotely
+  workflow_call:
 
 jobs:
   update-workflows:
