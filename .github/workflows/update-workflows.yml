@@ -11,7 +11,7 @@ jobs:
       - name: Checkout Slave Repository Workflows Branch
         uses: actions/checkout@v3
         with:
-          ref: workflows  # Check out the 'workflows' branch
+          ref: main  # Check out the 'workflows' branch
           fetch-depth: 0  # Full history for force push
 
       - name: Pull Latest Workflows from Central Repo
