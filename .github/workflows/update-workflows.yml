@@ -20,7 +20,7 @@ jobs:
           git fetch central main
 
       - name: List contents of Master directory
-        run: ls -R Master
+        run: ls -R
 
       - name: Copy Workflows
         run: |
